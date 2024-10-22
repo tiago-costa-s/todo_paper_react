@@ -5,8 +5,10 @@ import './App.css';
 function App() {
   const [noteList, setNoteList] = useState([]);
   const [colorNote, setColorNote] = useState('peach');
+  const [colorText, setColorText] = useState('black_pencil');
+  const [fixedNote, setFixedNote] = useState(false);
 
-  // carregar a lista do localStorage quando o componente for montado
+  // carrega a lista do localStorage quando o componente for montado
   useEffect(() => {
     const getListLocalStorage = JSON.parse(localStorage.getItem('noteList'));
     // verifique se a lista armazenada existe antes de definir o estado
@@ -16,22 +18,24 @@ function App() {
   }, []);
 
   // define a cor da nota
-  const addColorNotes = (color) => {
+  const onAddColorNotes = (color) => {
     setColorNote(color);
   };
 
-  // define a cor da caneta
-  const addColorText = () => { };
+  // define a cor do texto
+  const onAddColorText = (color) => {
+    setColorText(color);
+  };
 
   // cria uma nota
-  const createNotes = () => {
+  const onCreateNotes = () => {
     const newNote = {
-      id: generateId(),
+      id: onGenerateId(),
       text: '',
-      createDate: generatedCreationDate(),
+      createDate: onGeneratedCreationDate(),
       colorNote: colorNote,
-      colorText: 'red_note',
-      fixed: false
+      colorText: colorText,
+      fixedNote: fixedNote
     };
 
     const updatedNotes = [...noteList, newNote];
@@ -39,16 +43,17 @@ function App() {
     setNoteList(updatedNotes);
     localStorage.setItem('noteList', JSON.stringify(updatedNotes));
 
-    console.log(newNote)
+    console.log(newNote);
+    console.log(noteList.length);
   };
 
   // gera id da nota
-  const generateId = () => {
+  const onGenerateId = () => {
     return Math.floor(Math.random() * 1000);
   };
 
-  // cria data de criação
-  const generatedCreationDate = () => {
+  // gera data de criação
+  const onGeneratedCreationDate = () => {
     const date = new Date();
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -57,27 +62,36 @@ function App() {
   };
   // console.log(generatedCreationDate());
 
-  // remover note
-  const removeNote = (id) => {
+  // remover nota
+  const onRemoveNote = (id) => {
     const updatedNotes = noteList.filter((item) => item.id !== id);
     setNoteList(updatedNotes);
     localStorage.setItem('noteList', JSON.stringify(updatedNotes));
     console.log('Remove Item')
   };
 
-  // fixar nota no board
-  const fixedNote = () => {
-    console.log('Fixar Nota' + item.id);
+  // fixa nota no board
+  const onFixedNote = (id) => {
+    noteList.map((item) => {
+      if (item.id == id) {
+        console.log('Fixar Nota' + item.id);
+        setFixedNote(true)
+        console.log(item.fixedNote)
+      }
+    })
   };
 
   return (
-    <div className="app">
+    <div className='app'>
       <Board
-        createNote={createNotes}
+        createNote={onCreateNotes}
         noteList={noteList}
-        removeNote={removeNote}
-        addColorNotes={addColorNotes}
+        onRemoveNote={onRemoveNote}
         colorNote={colorNote}
+        onAddColorNotes={onAddColorNotes}
+        colorText={colorText}
+        onAddColorText={onAddColorText}
+        onFixedNote={onFixedNote}
       />
     </div>
   );

@@ -9,10 +9,15 @@
   transition: 1s;
 }
 
-.note:hover .icon_closed,
+/* .note:hover .icon_closed,
 .note:hover .icon_pin {
   color: #00000083;
 }
+
+.icon_closed:hover,
+.icon_pin:hover {
+  color: black;
+} */
 
 .note_body {
   min-height: calc(100% - 20px);
@@ -68,13 +73,7 @@
   left: 50%;
   transform: translate(300%, -120%);
   font-size: 1.8rem;
-  color: transparent;
   cursor: pointer;
-}
-
-.icon_closed:hover,
-.icon_pin:hover {
-  color: black;
 }
 
 .fixed_note {

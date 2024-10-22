@@ -1,22 +1,20 @@
 import { IoIosCloseCircle } from "react-icons/io";
 import { BsFillPinAngleFill } from "react-icons/bs";
-import { useState } from "react";
 
 import "./Note.css";
 
-const Note = ({ id, text, date, colorNote, colorText, removeNote, fixed }) => {
+const Note = ({ id, text, date, colorNote, colorText, onRemoveNote, onFixedNote }) => {
 
   return (
     <div className={`note ${colorNote}`}>
       <div className="note_body">
         <IoIosCloseCircle
           className="icon_closed"
-          onClick={() => removeNote(id)}
+          onClick={() => onRemoveNote(id)}
         />
         <textarea
+          className={`${colorText}`}
           maxLength={135}
-          name=""
-          id=""
           placeholder="Adicione um texto..."
         // value={text}
         ></textarea>
@@ -25,7 +23,10 @@ const Note = ({ id, text, date, colorNote, colorText, removeNote, fixed }) => {
         <p className="note_date">
           <span>{date}</span>
         </p>
-        <BsFillPinAngleFill className="icon_pin" />
+        <BsFillPinAngleFill
+          className="icon_pin"
+          onClick={() => onFixedNote(id)}
+        />
       </div>
     </div>
   );

@@ -4,46 +4,49 @@ import { useEffect, useState } from "react";
 import BoardController from "../bordController/BoardController";
 import "./Board.css";
 
-const Board = ({ createNote, noteList, removeNote, addColorNotes, colorNote, colorText }) => {
-
-  const alterSelectColor = () => {
-    const color = document.querySelectorAll("#colors_contrainer ul li");
-    console.log(color);
-
-    color.forEach((item) => {
-      if (item.className == "selected") {
-        item.getRootNode;
-      }
-    });
-  };
+const Board = ({ createNote, noteList, onRemoveNote, colorNote, onAddColorNotes, colorText, onAddColorText, onFixedNote }) => {
 
   return (
-    <div className="board">
-      <div className="board_nav">
-        <BoardController createNote={createNote} addColorNotes={addColorNotes} colorNote={colorNote} />
+    <div className='board'>
+      <div className='board_nav'>
+        <BoardController
+          createNote={createNote}
+          colorNote={colorNote}
+          onAddColorNotes={onAddColorNotes}
+          colorText={colorText}
+          onAddColorText={onAddColorText}
+        />
       </div>
-      <div className="board_container">
-        <header className="board_header">
-          <h2 className="board_title">Notes</h2>
-          <div className="search_container">
-            <CiSearch className="search_icon" />
-            <input className="search_note" type="text" placeholder="Buscar" />
+      <div className='board_container'>
+        <header className='board_header'>
+          <h2 className='board_title'>Notes</h2>
+          <div className='search_container'>
+            <CiSearch className='search_icon' />
+            <input className="search_note" type='text' placeholder='Buscar' />
           </div>
         </header>
-        <ul className="board_list">
-          {noteList.map((item) => (
-            <li key={item.id}>
-              <Note
-                id={item.id}
-                text={item.text}
-                date={item.createDate}
-                colorNote={item.colorNote}
-                colorText={item.colorText}
-                removeNote={removeNote}
-              />
-            </li>
-          ))}
-        </ul>
+        {
+          noteList.length !== 0 ?
+            <ul className='board_list'>
+              {noteList.map((item) => (
+                <li key={item.id}>
+                  <Note
+                    id={item.id}
+                    text={item.text}
+                    date={item.createDate}
+                    colorNote={item.colorNote}
+                    colorText={item.colorText}
+                    onRemoveNote={onRemoveNote}
+                    onFixedNote={onFixedNote}
+                  />
+                </li>
+              ))}
+            </ul>
+            :
+            <div className='board_text_alert'>
+              <p className='text_alert'>Você não possui notas criadas</p>
+            </div>
+        }
       </div>
     </div>
   );

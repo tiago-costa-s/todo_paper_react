@@ -5,15 +5,11 @@ import LogoPaperNote from "../logopapernote/LogoPaperNote";
 import { useState } from "react";
 import "./BoardController.css";
 
-const BoardController = ({ createNote, addColorNotes, colorNote }) => {
+const BoardController = ({ createNote, colorNote, onAddColorNotes, colorText, onAddColorText }) => {
 
   const handleClick = () => {
     createNote();
   };
-
-  // const addColorNotes = () => {
-  //   addColorNotes(colorNote);
-  // };
 
   return (
     <div className='board_controller'>
@@ -31,33 +27,39 @@ const BoardController = ({ createNote, addColorNotes, colorNote }) => {
       <div className='colors_container'>
         <div
           className={`circle peach ${colorNote === 'peach' ? 'selected' : ''}`}
-          onClick={() => addColorNotes('peach')}>
+          onClick={() => onAddColorNotes('peach')}>
         </div>
         <div
           className={`circle mint_green ${colorNote === 'mint_green' ? 'selected' : ''}`}
-          onClick={() => addColorNotes('mint_green')}>
+          onClick={() => onAddColorNotes('mint_green')}>
         </div>
         <div
           className={`circle pale_yellow ${colorNote === 'pale_yellow' ? 'selected' : ''}`}
-          onClick={() => addColorNotes('pale_yellow')}>
+          onClick={() => onAddColorNotes('pale_yellow')}>
         </div>
         <div
           className={`circle light_sky_blue ${colorNote === 'light_sky_blue' ? 'selected' : ''}`}
-          onClick={() => addColorNotes('light_sky_blue')}>
+          onClick={() => onAddColorNotes('light_sky_blue')}>
         </div>
         <div
           className={`circle light_coral ${colorNote === 'light_coral' ? 'selected' : ''}`}
-          onClick={() => addColorNotes('light_coral')}>
+          onClick={() => onAddColorNotes('light_coral')}>
         </div>
         <div
           className={`circle lavender_pink ${colorNote === 'lavender_pink' ? 'selected' : ''}`}
-          onClick={() => addColorNotes('lavender_pink')}>
+          onClick={() => onAddColorNotes('lavender_pink')}>
         </div>
       </div>
       <div className="pencil_container">
-        <BsFillPencilFill className='pincel black_pencil' />
-        <BsFillPencilFill className='pincel light_blue_pencil' />
-        <BsFillPencilFill className='pincel red_pencil' />
+        <BsFillPencilFill className={`pincel black_pencil ${colorText === 'black_pencil' ? 'selected_shadow' : ''} `}
+          onClick={() => onAddColorText('black_pencil')}
+        />
+        <BsFillPencilFill className={`pincel light_blue_pencil ${colorText === 'pincel light_blue_pencil' ? 'selected_shadow' : ''} `}
+          onClick={() => onAddColorText('pincel light_blue_pencil')}
+        />
+        <BsFillPencilFill className={`pincel red_pencil ${colorText === 'red_pencil' ? 'selected_shadow' : ''} `}
+          onClick={() => onAddColorText('red_pencil')}
+        />
       </div>
     </div >
   );

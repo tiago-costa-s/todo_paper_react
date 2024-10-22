@@ -97,3 +97,19 @@
   font-weight: 500;
   color: var(--light-grey);
 }
+
+.board_text_alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 65vh;
+ 
+  /* border: 1px solid red; */
+}
+
+.text_alert {
+  font-size: 3rem;
+  color: var(--light-grey);
+
+}

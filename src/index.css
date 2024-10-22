@@ -18,3 +18,60 @@
 ul {
   list-style: none;
 }
+
+.selected {
+  border: 3px solid #43a1ff;
+  border-radius: 50%;
+}
+
+.selected_shadow {
+  filter: drop-shadow(1px 1px 6px #000000);
+}
+
+.peach {
+  background-color: #fbdda5;
+}
+
+.mint_green {
+  background-color: #b6fcb6;
+}
+
+.pale_yellow {
+  background-color: #feffa9;
+}
+
+.light_sky_blue {
+  background-color: #badaff;
+}
+
+.light_coral {
+  background-color: #ffb8b8;
+}
+
+.lavender_pink {
+  background-color: #ffb5f3;
+}
+
+.pencil_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pincel {
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* Classes de cores para canetas */
+.black_pencil {
+  color: #211b15;
+}
+
+.light_blue_pencil {
+  color: #4169e1;
+}
+
+.red_pencil {
+  color: #ff0000;
+}
